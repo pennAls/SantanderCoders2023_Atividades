@@ -14,9 +14,9 @@
 ## 📋 Sobre o projeto
 
 <p align="justify">
-Bem-vindo ao repositório oficial do curso Front End Santander Coders 2023! Aqui, você encontrará uma coleção abrangente de atividades, projetos e recursos que foram desenvolvidos e explorados ao longo do curso.<br>
-Nestes módulos, você encontrará uma variedade de atividades práticas e exercícios propostos durante o curso, destinados a fortalecer suas habilidades de codificação, compreensão de conceitos fundamentais e resolução de problemas comuns encontrados no desenvolvimento front-end.<br>
-Este repositório abriga os projetos práticos desenvolvidos ao longo do curso. Desde simples páginas web estáticas até aplicações web interativas e dinâmicas, cada projeto representa uma oportunidade para aplicar e consolidar o conhecimento adquirido em sala de aula.
+   Bem-vindo ao repositório oficial do curso Front End Santander Coders 2023! Aqui, você encontrará uma coleção abrangente de atividades, projetos e recursos que foram desenvolvidos e explorados ao longo do curso.<br><br>
+   Nestes módulos, você encontrará uma variedade de atividades práticas e exercícios propostos durante o curso, destinados a fortalecer suas habilidades de codificação, compreensão de conceitos fundamentais e resolução de problemas comuns encontrados no desenvolvimento front-end.<br><br>
+   Este repositório abriga os projetos práticos desenvolvidos ao longo do curso. Desde simples páginas web estáticas até aplicações web interativas e dinâmicas, cada projeto representa uma oportunidade para aplicar e consolidar o conhecimento adquirido em sala de aula.
 
 ## 🕹 Tecnologias
 
