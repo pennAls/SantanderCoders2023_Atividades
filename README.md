@@ -27,7 +27,7 @@ As seguintes ferramentas foram usadas na construção do projeto:
 
 ## 📦 Como executar o projeto
 
-O repositório contém projetos que utilizam <kbd> HTML5 <kbd>,< <kbd> CSS <kbd> e <kbd> JavaScript <kbd> sendo possivel executar o projeto clonando o projeto e abrindo em qualquer navegador.
+O repositório contém projetos que utilizam <kbd> HTML5 <kbd>,<kbd> CSS <kbd> e <kbd> JavaScript <kbd> sendo possivel executar o projeto clonando o projeto e abrindo em qualquer navegador.
 
 
 ## 💻 Desenvolvedor:
