@@ -4,14 +4,12 @@
 
 <p align="center">
  <a href="#-sobre-o-projeto">Sobre o Projeto</a> •
- <a href="#-demo-do-projeto">Demo do projeto</a> •
- <a href="#-requisitos">Requisitos</a> • 
  <a href="#-tecnologias">Tecnologias</a> • 
  <a href="#-como-executar-o-projeto">Como executar o projeto</a> • 
- <a href="#-desenvolvedora">Desenvolvedor</a> • 
+ <a href="#-desenvolvedor">Desenvolvedor</a> • 
 </p>
 
-## 📋 Sobre o projeto
+## 📋 Sobre o Repositório
 
 <p align="justify">
    Bem-vindo ao repositório oficial do curso Front End Santander Coders 2023! Aqui, você encontrará uma coleção abrangente de atividades, projetos e recursos que foram desenvolvidos e explorados ao longo do curso.<br><br>
