@@ -1,5 +1,41 @@
 const prompt = require("prompt-sync")({ sigint: true });
 
+class Pessoa {
+  Nome;
+  Idade;
+  CPF;
+  constructor(nome, idade, cpf) {
+    if (typeof nome !== "string") {
+      throw new Error("O titular deve ser uma string");
+    }
+
+    for (const letra of nome) {
+      if (!isNaN(letra) && letra !== " ") {
+        throw new Error("O nome não pode conter números");
+      }
+    }
+    this.Nome = nome;
+    if (!isNaN(idade) && idade >= 18 && idade < 120) {
+      this.Idade = idade;
+    } else {
+      throw new Error("A idade é inválida");
+    }
+    if (typeof cpf === "string") {
+      this.CPF = cpf;
+    } else {
+      throw new Error("CPF inválido");
+    }
+  }
+  exibirDados() {
+    console.log(
+      `O cliente ${this.Nome} tem ${this.Idade} anos e CPF: ${this.CPF}`
+    );
+  }
+}
+
+const person = new Pessoa("Ivan", 18, "111111111111");
+person.exibirDados();
+
 class Conta {
   #Nometitular;
   #Saldo = 0;
