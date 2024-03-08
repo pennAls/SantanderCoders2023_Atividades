@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npx ts-node-dev aula_3.ts",
+    "start": "npx ts-node-dev aula_5.ts",
     "start1": "npx ts-node-dev aula_4.ts"
   },
   "keywords": [],
@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "prompt-sync": "^4.2.0",
+    "ts-node-dev": "^2.0.0",
     "typescript": "^5.3.3"
   }
 }

@@ -68,7 +68,7 @@ class Conta {
   inativarConta() {
     if (this.#Saldo === 0 && this.#Saldo === true) {
       console.log("Conta Inativada com Sucesso");
-      return this.#Conta_ativa === false;
+      return (this.#Conta_ativa = false);
     } else {
       throw new Error(
         "Não é Possível Inativar uma conta com saldo ou que já esteja inativa"
