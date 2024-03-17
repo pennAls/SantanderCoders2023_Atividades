@@ -23,11 +23,18 @@ As seguintes ferramentas foram usadas na construção do projeto:
 -   HTML5
 -   CSS3
 -   JavaScript
-
+-   TypeScript
 
 ## 📦 Como executar o projeto
 
-O repositório contém projetos que utilizam <kbd> HTML5 <kbd>,<kbd> CSS <kbd> e <kbd> JavaScript <kbd> sendo possivel executar o projeto clonando o projeto e abrindo em qualquer navegador.
+O repositório contém projetos que utilizam <kbd> HTML5 <kbd>,<kbd> CSS <kbd> e <kbd> JavaScript <kbd> sendo possivel executar o projeto clonando o projeto e abrindo em qualquer navegador. 
+
+Para arquivos tipo typescript será necessário:
+
+1. Clone o repositório: `git clone URL_DO_REPOSITORIO`
+2. Instale as dependências: `npm install`
+3. Verificar o package.json para saber o comando que executa cada projeto
+4. Execute o projeto: `npm start`
 
 
 ## 💻 Desenvolvedor:

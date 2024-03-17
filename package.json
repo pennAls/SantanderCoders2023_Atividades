@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npx ts-node-dev aula_5.ts",
-    "start1": "npx ts-node-dev aula_4.ts"
+    "start0": "npx ts-node-dev MÓDULO_3_POO/Aula_3/src/aula_3.ts",
+    "start1": "npx ts-node-dev MÓDULO_3_POO/Aula_4/src/aula_4.ts",
+    "start2": "npx ts-node-dev MÓDULO_3_POO/Aula_5/src/aula_5.ts"
   },
   "keywords": [],
   "author": "",

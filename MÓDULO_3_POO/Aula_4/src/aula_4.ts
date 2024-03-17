@@ -1,7 +1,7 @@
 class EuPessoa {
     public Nome: string
     private IsAlive: boolean;
-    // static NumeroEuPessoas: number = 10;
+    static NumeroEuPessoas: number = 10;
     static Idade: number = 33;
 
     constructor(nome: string) {
@@ -29,7 +29,6 @@ class EuPessoa {
 
 }
 
-
 const person0 = new EuPessoa("larissa")
 console.log(person0)
 
@@ -40,3 +39,4 @@ console.log(person)
 console.log(person.apresentar())
 EuPessoa.conteAteONumeroRecebido(10);
 console.log(EuPessoa.Idade)
+

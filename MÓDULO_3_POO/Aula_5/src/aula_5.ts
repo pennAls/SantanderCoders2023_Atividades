@@ -145,12 +145,10 @@ const user1: Iaccount = {
 };
 
 const user2: Iaccount = {
-  nomeTitular: "Pena",
+  nomeTitular: "Lucas",
   saldo: 500,
   contaAtiva: true,
 };
 
 addCliente(user1);
-// console.log(user1.depositar();)
-addCliente(user2);
 console.log(clientes);

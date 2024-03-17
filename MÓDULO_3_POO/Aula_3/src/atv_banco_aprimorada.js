@@ -1,5 +1,4 @@
 const prompt = require("prompt-sync")({ sigint: true });
-
 class Pessoa {
   Nome;
   Idade;
