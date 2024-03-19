@@ -1,5 +1,3 @@
-const prompt = require("prompt-sync")({ sigint: true });
-
 class Conta {
   #Nometitular;
   #Saldo = 0;
