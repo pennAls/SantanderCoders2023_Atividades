@@ -10,7 +10,8 @@
     "start2": "npx ts-node-dev MÓDULO_3_POO/Aula_5/src/aula_5.ts",
     "start3": "npx ts-node-dev MÓDULO_3_POO/Aula_6/src/atv_1.ts",
     "start4": "npx ts-node-dev MÓDULO_3_POO/Aula_6/src/atv_2.ts",
-    "start5": "npx ts-node-dev MÓDULO_3_POO/Aula_6/src/atv_4.ts"
+    "start5": "npx ts-node-dev MÓDULO_3_POO/Aula_6/src/atv_3.ts",
+    "start6": "npx ts-node-dev MÓDULO_3_POO/Aula_6/src/atv_4.ts"
 
   },
   "keywords": [],
