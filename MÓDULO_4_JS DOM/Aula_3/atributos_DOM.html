@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>elementos</title>
+  </head>
+  <body>
+    <h1>Alterando o conteúdo dos elementos HTML</h1>
+    <hr />
+
+    <h4>1. element.textContent</h4>
+    <span>
+      O atributo textContent nos permite obter o texto contido dentro do
+      elemento. Mesmo que haja outras tags dentro dele, o textContent irá
+      retornar todo o conteúdo de texto contido em todas as tags filhas. No
+      entanto, assim como podemos visualizar o texto, podemos também alterá-lo;
+      para isso, basta fazer uma atribuição.
+    </span>
+
+    <p>Isto é um exemplo</p>
+
+    <img src="imgs/textcontent.jpeg" alt="" />
+
+    <script>
+      const p = document.getElementsByTagName("p");
+      // p[0].textContent = "<strong> Isto é um exemplo em negrito alterado com textContent </strong>";
+    </script>
+
+    <br />
+    <br />
+
+    <span
+      >Você pode se perguntar: “Mas e se eu quiser adicionar uma parte do texto
+      em negrito?”. Bom, nesse caso, adicionar uma tag strong, como mostra o
+      código a seguir, não vai trazer esse resultado, porque ela vai ser
+      renderizada como texto.
+    </span>
+
+    <h4>2. element.innerHTML</h4>
+    <span>
+      O innerHTML retorna o conteúdo HTML contido dentro do elemento. Da mesma
+      forma que vimos para o textContent, também podemos atribuir um novo valor
+      para o innerHTML, porém, nesse caso, o valor pode ser um conjunto de tags
+      HTML no formato de string.
+    </span>
+
+    <p class="two">Isto é meu segundo paragráfo</p>
+    <p>Uso do innerHTML:</p>
+    <img src="imgs/innerhtml.jpeg" alt="" />
+    <p>Texto alterado:</p>
+    <img src="imgs/depoisdoinner.jpeg" alt="" />
+
+    <script>
+      const segundoParagrafo = document.querySelector("p.two");
+      //segundoParagrafo.innerHTML =
+      //"Esse é o <strong>novo conteúdo</strong> do <mark>segundo parágrafo</mark>.";
+    </script>
+
+    <h4>3. element.value</h4>
+    <span>
+      Para finalizar, é importante mencionarmos o atributo value. Ele só existe
+      dentro de elementos input e pode ser utilizado para obter ou definir o
+      conteúdo da propriedade value do input.
+    </span>
+
+    <h1>Adicionando elementos na página web</h1>
+    <hr />
+    <span
+      >Para adicionar elementos no HTML por meio do JavaScript, existem vários
+      métodos. Seria possível, inclusive, utilizar o atributo próprio atributo
+      innerHTML que já vimos anteriormente. Consegue imaginar como faríamos
+      isso? Bastaria incrementar nesse atributo o conteúdo que desejamos, como
+      ilustra o exemplo do código abaixo:
+    </span>
+    <br />
+    <br />
+    <strong>
+      elemento.innerHTML = elemento.innerHTML +` "div" Essa div será adicionada
+      logo após o conteúdo que já existe no "elemento". "div" `;
+    </strong>
+    <br />
+    <br />
+    <span>
+      A partir do código acima, vemos que estamos concatenando uma div com o
+      conteúdo que já existia dentro do elemento (que pode ser qualquer elemento
+      que você tenha selecionado com o querySelector, por exemplo).
+    </span>
+
+    <br />
+    <br />
+
+    <div class="blue" style="width: 200px; background-color: blue">
+      Quadrado1
+    </div>
+
+    <br />
+
+    <img src="imgs/quadrado.jpeg" alt="" />
+
+    <br />
+
+    <img src="imgs/quadrado2.jpeg" alt="" />
+
+    <script>
+      const boxes = document.querySelector("div.blue");
+      // boxes.innerHTML += `<div class="red" style="width: 200px; background-color: red;">Quadrado2</div>`;
+    </script>
+
+    <br />
+    <br />
+
+    <span>
+      A partir do código acima, vemos que estamos concatenando uma div com o
+      conteúdo que já existia dentro do elemento (que pode ser qualquer elemento
+      que você tenha selecionado com o querySelector, por exemplo). Porém, como
+      dito anteriormente, existem vários métodos que servem para adicionar
+      elementos. Veremos os principais deles e, inclusive, teremos a
+      oportunidade de combiná-los com outros recursos que vimos anteriormente.
+    </span>
+
+    <h4>1. createElement / appenChild:</h4>
+
+    <span>
+      Esse método recebe o nome da tag que se deseja criar como parâmetro. Uma
+      vez criada, a tag ainda não tem conteúdo. Porém, para adicionar um
+      conteúdo podemos utilizar o textContent ou o innerHTML que já vimos
+      anteriormente.
+    </span>
+
+    <ul>
+      <li>Aprender DOM</li>
+      <li>Entender o querySelector</li>
+      <li>Utilizar o innerHTML</li>
+      <li>appenChild</li>
+    </ul>
+
+    <span>
+      Para inserir outro item (elemento li) dentro da lista, podemos utilizar um
+      primeiro método: appendChild. Considerando que se tenha um elemento criado
+      com o createElement, por exemplo, podemos utilizar o método appendChild
+      para inserir esse elemento dentro da nossa lista (ao final dela). O
+      appendChild deve ser chamado a partir do elemento da lista (ul), conforme
+      exemplifica o código a seguir, uma vez que desejamos adicionar mais um
+      item nesse elemento ul:
+    </span>
+
+    <br />
+    <br />
+
+    <img src="imgs/createlement.jpeg" alt="" />
+
+    <p>Assim: Temos o seguite resultado:</p>
+
+    <img src="imgs/appenchild (2).jpeg" alt="" />
+    <img src="imgs/list.jpeg" alt="" />
+
+    <script>
+      const lista = document.querySelector("ul");
+      const novoItem = document.createElement("li");
+      novoItem.textContent = "Aprender a utilizar o appendChild ✅";
+      //lista.appendChild(novoItem);
+    </script>
+
+    <h4>2. createElement / insertBefore:</h4>
+
+    <span>
+      Iremos chamar o método insertBefore a partir do elemento da lista, afinal,
+      queremos adicionar um novo elemento dentro dela. Esse método recebe dois
+      parâmetros: o elemento que você deseja adicionar (que pode ter sido criado
+      com o createElement) e o elemento filho acima do qual você deseja
+      adicionar o novo elemento.
+    </span>
+
+    <br />
+    <br />
+
+    <img src="imgs/insertbefore.jpeg" alt="" />
+    <img src="imgs/list1.jpeg" alt="" />
+    <p>Existe ainda o método insertAdjacentHTML</p>
+    <script>
+      const lista1 = document.querySelector("ul");
+      const itenslista = document.querySelectorAll("li");
+      const novoitem = document.createElement("li");
+      novoitem.textContent = "Aprender a utilizar o insertBefore ✅";
+      // lista1.insertBefore(novoItem, itenslista[0]);
+    </script>
+
+    <h4>3. removeChild:</h4>
+
+    <span>
+      Para finalizar esse tópico, veremos como remover um elemento da página,
+      utilizando o método removeChild. Como o próprio nome sugere, ele remove um
+      filho do elemento.
+    </span>
+
+    <ol id="delete">
+      <li>Ir</li>
+      <li>ao</li>
+      <li>Mercado</li>
+    </ol>
+
+        <img src="imgs/removechild.jpeg" alt="">
+        <img src="imgs/list2.jpeg" alt="">
+        <p>ou</p>
+        <img src="imgs/rmchild2.jpeg" alt="">
+        <img src="imgs/list2.jpeg" alt="">
+
+    <script>
+        const lista2 = document.querySelector("ol#delete"); 
+        const itens = document.querySelectorAll("ol>li");
+        // lista2.removeChild(lista2.children[0]);
+    </script>
+  </body>
+</html>

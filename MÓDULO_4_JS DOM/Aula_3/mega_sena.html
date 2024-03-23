@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mega Sena</title>
+  </head>
+  <body>
+    
+    <header>
+      <h1>Mega Sena</h1>
+      <p class="showNumber">Número:</p>
+      <hr />
+    </header>
+
+    <section class="sorteio">
+      <h2>Números Tentados:</h2>
+      <div class="tentativas">
+        <input type="number" class="tentativa" style="width: 50px" />
+        <input type="number" class="tentativa" style="width: 50px" />
+        <input type="number" class="tentativa" style="width: 50px" />
+        <input type="number" class="tentativa" style="width: 50px" />
+        <input type="number" class="tentativa" style="width: 50px" />
+        <input type="number" class="tentativa" style="width: 50px" />
+      </div>
+      <br />
+      <button onclick="mostrarNumero()">Revelar Resultado</button>
+    </section>
+
+    <script>
+      var flag = 0; 
+
+      function gerarNumeroEntreUmESessenta() {
+        return Math.floor(Math.random() * 60) + 1;
+      }
+
+      function mostrarNumero() {
+        if (flag < 6) {
+          var numeroGerado = gerarNumeroEntreUmESessenta();
+          var showNumberElement = document.querySelector(".showNumber");
+          showNumberElement.innerText += " " + numeroGerado;
+          flag++;
+        }
+      }
+    </script>
+  </body>
+</html>

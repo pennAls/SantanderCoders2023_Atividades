@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Seletores</title>
+  </head>
+  <body>
+    <h1>Seletores: Obtendo elementos do DOM</h1>
+
+    <h4>1. document.getElementsByTagName(nomeDaTag):</h4>
+    <span
+      >Ele nos permite obter elementos HTML a partir do nome da tag. Portanto,
+      você deve passar o nome da tag como parâmetro (no formato string). Caso
+      não seja encontrado nenhum elemento com o tag name especificado, o retorno
+      da função será um HTMLCollection (um array de elementos HTML) vazio.
+    </span>
+
+    <br />
+    <br />
+
+    <b>getElementsByTagName</b>
+    <br />
+    <b>getElementsByTagNameTwo</b>
+
+    <br />
+    <br />
+
+    <img src="imgs/tagname.jpeg" alt="" />
+
+    <script>
+      document.getElementsByTagName("b");
+    </script>
+
+    <h4>2. document.getElementsByClassName(nomeDaClasse):</h4>
+    <span
+      >O método getElementsByClassName é muito parecido com o anterior. A
+      diferença está no fato de que, nesse caso, estamos obtendo elementos pelo
+      nome da classe. Sendo assim, você deve passar o nome da classe que está
+      presente na tag como parâmetro (no formato string). Da mesma forma, caso
+      não seja encontrado nenhum elemento com o nome de classe especificado, o
+      retorno da função será um HTMLCollection (um array de elementos HTML)
+      vazio.
+    </span>
+
+    <br />
+    <br />
+
+    <b class="classname">getElementsByClassName</b>
+    <br />
+    <b class="classname">getElementsByClassName2</b>
+
+    <br />
+    <br />
+
+    <img src="imgs/classname.jpeg" alt="" />
+
+    <script>
+      document.getElementsByClassName("classname");
+    </script>
+
+    <h4>3. document.getElementById(id):</h4>
+    <span
+      >Este método recebe um id (como string) e retorna o elemento HTML que
+      contém o id especificado. Na nossa página de exemplo, poderíamos obter o
+      conteúdo da tag section fazendo document.getElementById('id'). Caso o id
+      passado como parâmetro não esteja presente no documento, a função irá
+      retornar null. Notou que esse método é no singular, ao invés do plural
+      (como eram os anteriores)? Isso se deve ao fato de que `id` deve ser único
+      em cada elemento HTML.
+    </span>
+
+    <br />
+    <br />
+
+    <b id="id">getelementbyid</b>
+
+    <br />
+    <br />
+
+    <img src="imgs\idname.jpeg" alt="" />
+
+    <script>
+      document.getElementById("id");
+    </script>
+
+    <h4>4. document.getElementsByName(name):</h4>
+    <span
+      >Este método é bem similar aos métodos getElementsByTagName e
+      getElementsByClassName, que vimos anteriormente, porém, nesse caso, o
+      método deve receber o conteúdo da propriedade name da tag. Essa
+      propriedade é comumente utilizada em elementos de formulários HTML.
+      Observe que temos essa propriedade sendo utilizada no input da nossa
+      página de exemplo.
+    </span>
+
+    <br />
+    <br />
+
+    <input type="search" name="pesquisa" />
+
+    <br />
+    <br />
+
+    <img src="imgs\getname.jpeg" alt="" />
+
+    <script>
+      document.getElementsByName("pesquisa");
+    </script>
+
+    <h4>
+      5. document.querySelector(seletor) e document.querySelectorAll(seletor):
+    </h4>
+
+    <span>
+      O método querySelector é um dos mais utilizados quando se deseja obter um
+      elemento HTML específico da página. Nele devemos passar um seletor no
+      estilo CSS como parâmetro e, com isso, o elemento será buscado na página.
+      Essa é grande vantagem do querySelector: com ele podemos ser mais
+      específicos na busca por elementos HTML.
+      <br />
+      <br />
+      Um ponto importante é que, por ter a proposta de ser bem específico, esse
+      método retorna apenas o primeiro elemento HTML que se enquadre no seletor
+      especificado. Caso tenha interesse de obter vários elementos, utilize o
+      método querySelectorAll.
+      <br />
+      <br />
+      OBS.: Uma importante vantagem do querySelectorAll é o fato de que ele
+      retorna um NodeList, que nos permite iterar sobre os seus elementos
+      utilizando um forEach. O mesmo não é válido para o HTMLCollection.
+    </span>
+
+    <br />
+    <br />
+
+    <section class="query">
+      <div>
+        <b style="background-color: black; color: aliceblue; font-size: 20px"
+          >querySelector</b
+        >
+        <b
+          style="
+            background-color: rgb(192, 19, 134);
+            color: aliceblue;
+            font-size: 20px;
+          "
+          >querySelector</b
+        >
+        <b
+          style="
+            background-color: rgb(190, 13, 13);
+            color: aliceblue;
+            font-size: 20px;
+          "
+          >querySelector</b
+        >
+      </div>
+    </section>
+
+    <br />
+
+    <img src="imgs\querry.jpeg" alt="" />
+    <p>
+      `[attribute='value']`: Este seletor permite selecionar elementos que
+      tenham um determinado atributo com um valor específico. Você substitui
+      'attribute' pelo nome do atributo que deseja verificar e 'value' pelo
+      valor que esse atributo deve ter para que o elemento seja selecionado.
+    </p>
+    <br />
+    <img src="imgs/querryall.jpeg" alt="" />
+    <p>
+      Selecionar todos os "b" dentro de uma "section" com uma classe específica
+      usando "section.classname b".
+    </p>
+
+    <script>
+      document.querySelector(
+        'b[style="background-color: black; color: aliceblue; font-size: 20px"]'
+      );
+      document.querySelectorAll("section.query b");
+    </script>
+  </body>
+</html>
