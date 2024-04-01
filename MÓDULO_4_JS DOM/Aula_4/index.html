@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p>p1</p>
+    <p>p2</p>
+    <p>p3</p>
+
+    <hr />
+
+    <div class="textoVerde">Esse é meu texto verde</div>
+    <br />
+    <div class="elementoEscondido" hidden>Div escondida</div>
+
+    <hr />
+
+    <h3>Lista de compras</h3>
+
+    <ul id="minhaLista">
+      <li id="li_1">Elemento 1 da lista</li>
+      <li id="li_2">Elemento 2 da lista</li>
+      <li id="li_3">Elemento 3 da lista</li>
+      <li id="li_4">Elemento 4 da lista</li>
+      <li id="li_5">Elemento 5 da lista</li>
+    </ul>
+
+    <hr />
+
+    <ol>
+      <li>Item 1</li>
+      <li>Item 2</li>
+    </ol>
+
+    <button onclick="addItem()">CLIQUE PARA ADICIONAR ITENS A LISTA</button>
+  </body>
+  <style>
+    .textoVerde {
+      color: green;
+    }
+    .textoAzul {
+      color: blue;
+    }
+  </style>
+  <script>
+    const changeTag = document.querySelectorAll("p");
+    changeTag.forEach((p, i) => {
+      p.textContent = `Esta é a minha nº${i + 1} TAG.`;
+    });
+
+    const changeColor = document.getElementsByClassName("textoVerde");
+    changeColor[0].classList.add("textoAzul");// Muda a classe usada
+    //changeColor[0].style.color = "blue" //Mexe na caracteristica color da classe
+    changeColor[0].textContent = "Esse é meu texto azul";
+
+    const hidden = document.getElementsByClassName("elementoEscondido");
+    hidden[0].removeAttribute("hidden");
+
+    const addItem = () => {
+      const lista = document.querySelector("#minhaLista");
+      const novoItem = document.createElement("li");
+      const changelist = document.querySelectorAll("li");
+      changelist.forEach((li, i) => {
+        novoItem.textContent = `Elemento ${i} da lista`;
+        lista.appendChild(novoItem);
+      });
+    };
+
+    /*
+            Atividade de Fixação.
+
+            Notas -> A resolução de todas as questões devem ser feitas na TAG script
+
+            1) Selecione e altere todos os elementos com a TAG <p> para conterem um texto com a seguinte descrição:
+                Esta é a minha nº TAG </p>.
+
+                Dica-> o seletor document.querySelectorAll nos retorna um array e podemos utilizar o forEach.
+                
+            
+            2) Selecione os elementos que contém a class textoVerde e as altere para textoAzul e altere o texto contido nesse 
+               elemento.
+
+            3) Selecione os elementos que tem a classe elementoEscondido e os mostre no HTML (Os elementos escondidos contém
+               o atributo hidden).
+
+            4) [DESAFIO] Crie um botão que, cada vez que for pressionado, insira um elemento no final da lista de id "minhaLista" 
+                contendo o seguinte texto:
+
+                "Elemento n da lista"
+
+                OBS -> Deve ter continuidade dos numeros da lista atual
+                DICA ->         
+                console.log(document.getElementById("minhaLista").children);
+                console.log(document.getElementById("minhaLista").childNodes);
+        */
+  </script>
+</html>

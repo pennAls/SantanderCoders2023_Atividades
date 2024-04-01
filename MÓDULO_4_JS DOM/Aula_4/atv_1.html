@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Lâmpadas</h1>
+    <!-- <input type="text" name="item" id="item" /> -->
+    <button id="btnAddItem">Adicionar lâmpada</button>
+    <div class="space"></div>
+
+    <style>
+      .lamp {
+        display: inline-block;
+        margin: auto;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .lamp-img {
+        width: auto;
+        height: auto;
+      }
+    </style>
+
+    <script>
+      const b = document.getElementById("btnAddItem");
+
+      b.addEventListener("click", () => {
+        const space = document.querySelector(".space");
+        const lamp = document.createElement("div");
+        const lamps = document.querySelectorAll(".lamp");
+        const id = lamps.length + 1;
+        lamp.classList.add("lamp");
+        lamp.id = `lamp_${id}`;
+        lamp.innerHTML = `<img class="lamp-img" src="assets/apagada.jpg" alt="">`;
+        space.appendChild(lamp);
+        window.alert("Você clicou no botão Adicionar!");
+        console.log("Você clicou no botão Adicionar!");
+
+        const img = lamp.querySelector(".lamp-img");
+        img.addEventListener("mouseover", () => {
+          if (!img.classList.contains("broken")) {
+            img.src = "assets/acesa.jpg";
+            console.log("Mouse passou sobre a imagem");
+          }
+        });
+        img.addEventListener("mouseout", () => {
+          if (!img.classList.contains("broken")) {
+            img.src = "assets/apagada.jpg";
+            console.log("Mouse saiu da imagem");
+          }
+        });
+
+        img.addEventListener("click", () => {
+          if (!img.classList.contains("broken")) {
+            img.src = "assets/quebrada.jpg";
+            img.classList.add("broken");
+            console.log("Mouse clicou na imagem");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

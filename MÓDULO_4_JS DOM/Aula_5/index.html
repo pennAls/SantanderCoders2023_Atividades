@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles/styles.css" />
+    <title>Lista de compras</title>
+  </head>
+  <body>
+    <h1>Lista de compras</h1>
+    <input
+      id="limite"
+      class="cabecalho"
+      placeholder="Limite de preço (00.00)"
+      type="text" />
+    <br />
+    <input id="produto" placeholder="Produto" class="cabecalho" type="text" />
+    <br />
+    <input
+      id="valor"
+      placeholder="Valor (00.00)"
+      class="cabecalho"
+      type="number" />
+    <button id="add">Adicionar Produto</button>
+
+    <ul id="lista"></ul>
+    <hr />
+    <h3>Soma</h3>
+    <span id="soma"></span>
+
+    <script>
+      /*
+        Materia nova ->
+        Adicionar o line-through e retirá-lo para mexermos no style
+
+        Dado o atual HTML estilizado, vamos fazer o seguinte ->
+
+        Vamos utilizar um array de objetos para representar os nossos produtos.
+        Ao iniciar, vamos adicionar os elementos contidos no array ao HTML;
+        Poderemos selecionar o produto (Checkbox) e assim ele ficará riscado da lista.
+
+
+        DESAFIO
+        Teremos um campo para fazer a soma
+        Também teremos um campo chamado "Limite".
+        Ao ultrapassarmos esse limite, o valor da soma deverá ficar vermelho
+      */
+
+      const listaItens = [];
+
+      class listaMercado {
+        constructor(nome, valor) {
+          this.Nome = nome;
+          this.Valor = valor;
+        }
+      }
+
+      const button = document.getElementById("add");
+      button.addEventListener("click", () => {
+        const produto = document.getElementById("produto").value;
+        const valor = parseFloat(document.getElementById("valor").value);
+        const limite = parseFloat(document.getElementById("limite").value);
+
+        adicionarItem(produto, valor);
+
+        const soma = document.getElementById("soma");
+        let somaTotal = parseFloat(soma.textContent) || 0;
+        somaTotal += valor;
+        soma.textContent = somaTotal.toFixed(2);
+
+        if (somaTotal >= limite) {
+          soma.style.color = "red";
+        }
+      });
+
+      const adicionarItem = (nome, valor) => {
+        const produtoExistente = listaItens.find(
+          (nomeProduto) => nomeProduto.Nome === nome
+        );
+        if (produtoExistente) {
+          console.error("Produto já existe na lista.");
+        } else {
+          const compra = new listaMercado(nome, valor);
+          listaItens.push(compra);
+          console.log("Produto adicionado com sucesso.");
+          atualizarLista();
+          return valor;
+        }
+      };
+
+      const removerItem = (index, valorRemovido) => {
+        listaItens.splice(index, 1);
+        // somaTotal -= valorRemovido;
+        atualizarLista();
+      };
+
+      const atualizarLista = () => {
+        const lista = document.getElementById("lista");
+        lista.innerHTML = "";
+
+        listaItens.forEach((element, index) => {
+          const li = document.createElement("li");
+          const spanProduto = document.createElement("span");
+          const spanValor = document.createElement("span");
+          const checkbox = document.createElement("input");
+          const remover = document.createElement("button");
+
+          const i = index + 1;
+          checkbox.type = "checkbox";
+          checkbox.className = "checkbox";
+          checkbox.id = `checkbox_produto_${i}`;
+
+          spanProduto.textContent = `${element.Nome}`;
+          spanValor.textContent = `R$${element.Valor.toFixed(2)}`;
+          remover.textContent = "Remover";
+
+          remover.addEventListener("click", () => {
+            removerItem(index, element.Valor);
+          });
+
+          checkbox.addEventListener("click", () => {
+            const estaSelecionado = checkbox.checked;
+            spanProduto.style.textDecoration = estaSelecionado
+              ? "line-through"
+              : "none";
+          });
+
+          li.appendChild(checkbox);
+          li.appendChild(spanProduto);
+          li.appendChild(spanValor);
+          li.appendChild(remover);
+          lista.appendChild(li);
+        });
+      };
+    </script>
+  </body>
+</html>

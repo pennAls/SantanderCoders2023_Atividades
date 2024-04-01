@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lista compras aula 4</title>
+</head>
+<h1>Lista compras</h1>
+<hr>
+<input type="text" placeholder="Produto" id="produto">
+<br> <br>
+<input type="text" placeholder="Valor" id="valor">
+<br> <br>
+<input type="text" placeholder="Imagem" id="imagem">
+<br> <br>
+<button id="btnAdicionarProduto">Adicionar Produto</button>
+
+<hr>
+
+<h2>Lista de produtos</h2>
+
+<div id="listaProdutos">
+    <div id="produto_1" style="display: inline-block;">
+        <img style="height: 300;width: 300px;"
+            src="data:image/jpeg;base64,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"
+            alt="">
+        <div id="descricao_produto_1" style="text-align: center;">
+            Banana - R$ 10,00 - <button>remover</button>
+        </div>
+    </div>
+</div>
+
+<body>
+</body>
+<script>
+
+    /*
+        Pontos a serem lembrados ->
+        tag IMG
+        referencia de imagens
+
+       Lista de compras
+       -> Adicionar compra
+       -> Remover compra
+       -> Total
+       -> Visualizar foto do item
+    */
+
+    const btnAdicionarProduto = document.getElementById("btnAdicionarProduto");
+
+    btnAdicionarProduto.addEventListener("click", () => {
+        const elProduto = document.getElementById("produto");
+        const elValor = document.getElementById("valor");
+        const elImagem = document.getElementById("imagem");
+
+        const produto = elProduto.value;
+        const valor = elValor.value;
+        const imagem = elImagem.value;
+
+
+        const lista = document.getElementById('listaProdutos');
+        const id = lista.children.length + 1;
+        const productId = `produto_${id}`
+
+        const divProduto = document.createElement("div");
+
+        divProduto.setAttribute("style", "display:inline-block;");
+
+        divProduto.setAttribute("id", productId);
+
+        const idBtnRemover = `btnRemover_${id}`;
+
+        divProduto.innerHTML = `
+         <img style="height: 300;width: 300px;" src="${imagem}"
+            alt="">
+        <div id="descricao_produto_${id}">
+            ${produto} - R$ ${valor} - <button id="${idBtnRemover}">remover</button>
+        </div>
+        `;
+
+        lista.appendChild(divProduto);
+
+        document.getElementById(idBtnRemover)
+
+        elProduto.value = "";
+        elValor.value = "";
+        elImagem.value = "";
+
+        const button = document.getElementById(idBtnRemover);
+
+        button.addEventListener("click", () => {
+            document.getElementById(productId).remove();
+        })
+    })
+
+    document.getElementById("valor").addEventListener("change", (e) => {
+        const value = document.getElementById("valor").value;
+        console.log("Novo valor ", value)
+    })
+</script>
+
+</html>
