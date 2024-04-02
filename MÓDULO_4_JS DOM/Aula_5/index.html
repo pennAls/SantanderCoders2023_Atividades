@@ -26,7 +26,7 @@
     <ul id="lista"></ul>
     <hr />
     <h3>Soma</h3>
-    <span id="soma"></span>
+    <h4>R$ <span id="soma"></span></h4>
 
     <script>
       /*
@@ -47,6 +47,8 @@
       */
 
       const listaItens = [];
+      const soma = document.getElementById("soma");
+      let somaTotal = parseFloat(soma.textContent) || 0;
 
       class listaMercado {
         constructor(nome, valor) {
@@ -62,15 +64,6 @@
         const limite = parseFloat(document.getElementById("limite").value);
 
         adicionarItem(produto, valor);
-
-        const soma = document.getElementById("soma");
-        let somaTotal = parseFloat(soma.textContent) || 0;
-        somaTotal += valor;
-        soma.textContent = somaTotal.toFixed(2);
-
-        if (somaTotal >= limite) {
-          soma.style.color = "red";
-        }
       });
 
       const adicionarItem = (nome, valor) => {
@@ -83,6 +76,10 @@
           const compra = new listaMercado(nome, valor);
           listaItens.push(compra);
           console.log("Produto adicionado com sucesso.");
+
+          somaTotal += valor;
+          soma.textContent = somaTotal.toFixed(2);
+          corSoma();
           atualizarLista();
           return valor;
         }
@@ -90,8 +87,21 @@
 
       const removerItem = (index, valorRemovido) => {
         listaItens.splice(index, 1);
-        // somaTotal -= valorRemovido;
+        somaTotal -= valorRemovido;
+        soma.textContent = somaTotal.toFixed(2);
+        corSoma();
         atualizarLista();
+      };
+
+      const corSoma = () => {
+        const limite = parseFloat(document.getElementById("limite").value);
+        if (somaTotal >= limite) {
+          const h4 = document.getElementsByTagName("h4")[0];
+          h4.style.color = "red";
+        } else {
+          const h4 = document.getElementsByTagName("h4")[0];
+          h4.style.color = "";
+        }
       };
 
       const atualizarLista = () => {
@@ -132,6 +142,10 @@
           lista.appendChild(li);
         });
       };
+
+      localStorage.setItem("listaItens", JSON.stringify(listaItens));
+      const listaDeComprasLocalStorage = localStorage.getItem("listaItens");
+      const listaDeCompras = JSON.parse(listaDeComprasLocalStorage || "[]");
     </script>
   </body>
 </html>
