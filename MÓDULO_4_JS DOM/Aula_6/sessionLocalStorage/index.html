@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Login Ada</h1>
+        <form action="">
+            <label class="form-label" for="login">
+                Login
+            </label>
+            <input id="login" type="text" name="login">
+            <label class="form-label" for="password">
+                Password
+            </label>
+            <input id="password" type="password" name="password">
+            <br>
+            <button id="btn-login" class="btn-login">Login</button>
+        </form>
+    </div>
+</body>
+<script>
+    const userCorreto = {
+        "user": "ada",
+        "senha": "ada123"
+    };
+
+    const user = document.getElementById("login");
+    const pass = document.getElementById("password");
+    const buttonLogin = document.getElementById("btn-login");
+
+    function validaUsuarioAutenticado() {
+        const userSession = sessionStorage.getItem("usuarioAutenticado");
+        if (userSession === "true") {
+            window.location.href = "./pages/logged.html";
+        }
+
+        if (localStorage.getItem("valorInput") && localStorage.getItem("valorPassword")) {
+            user.value = localStorage.getItem("valorInput");
+            pass.value = localStorage.getItem("valorPassword");
+        }
+    }
+
+    validaUsuarioAutenticado();
+
+    buttonLogin.addEventListener("click", (e) => {
+        const userlog = user.value;
+        const userpass = pass.value;
+
+        if (userCorreto.user === userlog && userCorreto.senha === userpass) {
+            sessionStorage.setItem("usuarioAutenticado", "true");
+            localStorage.setItem("valorInput", userlog);
+            localStorage.setItem("valorPassword", userpass);
+            window.location.href = "./pages/logged.html";
+        } else {
+            window.alert("Usuário e/ou senha inválidos");
+        }
+        e.preventDefault();
+    });
+
+    /*
+        1) Ao digitar a senha errada (comparação com o objeto), mostrar um alert de 
+        login incorreto.
+
+        2) Ao fazer o login corretamente redirecionar o usuário para a página
+        ./pages/logged.html
+
+        dica: window.location.href
+
+        2-1) Ao fazer refresh/tentar entrar no index.html, caso o usuário estiver 
+        com uma sessão ativa e válida, redirecioná-lo para a página logged.html
+
+        3) Ao clicar no botão logoff, o usuário deverá ter a sessão limpa e,
+        as suas credenciais deverão estar salvas para facilitar o seu próximo login.
+    */
+</script>
+
+</html>

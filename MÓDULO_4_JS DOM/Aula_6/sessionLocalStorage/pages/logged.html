@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Logged</title>
+</head>
+<body>
+  <h1>Logado</h1>
+  <button id="logoutBtn">Logoff</button>
+
+  <script>
+    function validaUsuarioAutenticado() {
+      const usuarioAutenticado = sessionStorage.getItem("usuarioAutenticado");
+      if (!usuarioAutenticado) {
+        window.location.href = "../index.html";
+      }
+    }
+
+    validaUsuarioAutenticado();
+
+    const logoutBtn = document.getElementById("logoutBtn");
+    logoutBtn.addEventListener("click", (event) => {
+      event.preventDefault();
+      sessionStorage.removeItem("usuarioAutenticado");
+      window.location.href = "../index.html";
+    });
+  </script>
+</body>
+</html>
