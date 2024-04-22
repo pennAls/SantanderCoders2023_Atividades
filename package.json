@@ -12,12 +12,12 @@
     "start4": "npx ts-node-dev MÓDULO_3_POO/Aula_6/src/atv_2.ts",
     "start5": "npx ts-node-dev MÓDULO_3_POO/Aula_6/src/atv_3.ts",
     "start6": "npx ts-node-dev MÓDULO_3_POO/Aula_6/src/atv_4.ts"
-
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bootstrap": "^5.3.3",
     "prompt-sync": "^4.2.0",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.3.3"
