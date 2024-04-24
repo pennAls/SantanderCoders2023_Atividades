@@ -1,7 +1,8 @@
   <!-- About -->
   <section id="about" class="my-5">
     <div class="container">
-      <h1 class="text-center mb-4">{{aboutData.title}}</h1>
+      <h1 [ngClass]="{'title':timer === 0,'title1':timer>0}" class="text-center mb-4">{{aboutData.title}}</h1>
+      <!-- <h1 [ngStyle]="{'font-size': '3rem',color:timer === 0 ?'red':'blue' }" class="text-center mb-4">{{aboutData.title}}</h1> -->
       <div [innerHTML]="aboutData.text"></div>
     </div>
   </section>

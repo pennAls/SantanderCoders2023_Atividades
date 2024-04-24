@@ -1,5 +1,8 @@
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav
+  class="navbar navbar-expand-lg"
+  [ngStyle]="{ 'background-color': isAuthenticated ? '#CECECE' : '#000000' }"
+>
   <div class="container-fluid">
     <a class="navbar-brand" (click)="goToPage(Pages.HOME)">
       <img src="./../assets/images/logo_wt.png" alt="" />
@@ -19,6 +22,7 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <a
+            [ngStyle]="{ color: isAuthenticated ? 'black' : 'white' }"
             class="nav-link active"
             aria-current="page"
             (click)="goToPage(Pages.HOME)"
@@ -26,23 +30,44 @@
           >
         </li>
         <li class="nav-item">
-          <a class="nav-link" (click)="goToPage(Pages.ABOUT)">Sobre nós</a>
+          <a
+            [ngStyle]="{ color: isAuthenticated ? 'black' : 'white' }"
+            class="nav-link"
+            (click)="goToPage(Pages.ABOUT)"
+            >Sobre nós</a
+          >
         </li>
         <li class="nav-item">
-          <a class="nav-link" (click)="goToPage(Pages.ADDRESS)">Endereço</a>
+          <a
+            [ngStyle]="{ color: isAuthenticated ? 'black' : 'white' }"
+            class="nav-link"
+            (click)="goToPage(Pages.ADDRESS)"
+            >Endereço</a
+          >
         </li>
         <li class="nav-item">
-          <a class="nav-link" (click)="goToPage(Pages.CONTACT)">Contato</a>
+          <a
+            [ngStyle]="{ color: isAuthenticated ? 'black' : 'white' }"
+            class="nav-link"
+            (click)="goToPage(Pages.CONTACT)"
+            >Contato</a
+          >
         </li>
       </ul>
+      <div [ngSwitch]="today">
+        <span *ngSwitchCase="0">Domingo</span>
+        <span *ngSwitchCase="1">Segunda-Feira</span>
+        <span *ngSwitchCase="2">Terça-Feira</span>
+        <span *ngSwitchCase="3">Quarta-Feira</span>
+        <span *ngSwitchCase="4">Quinta-Feira</span>
+        <span *ngSwitchCase="5">Sexta-Feira</span>
+        <span *ngSwitchCase="6">Sábado</span>
+        <span *ngSwitchDefault="Deu ruim dms"></span>
+      </div>
       <form class="d-flex">
-        <input
-          class="form-control me-2"
-          type="search"
-          placeholder="Search"
-          aria-label="Search"
-        />
-        <a class="btn btn-outline-light" href="#">Search</a>
+        <button class="btn btn-outline-light" (click)="toggleLogin()">
+          {{ isAuthenticated ? "Login" : "LogOut" }}
+        </button>
       </form>
     </div>
   </div>
@@ -67,6 +92,7 @@
     *ngIf="currentPage === 'ADDRESS'"
     [addressData]="appData.sectionAddress"
     (saveAddressEmmiter)="handleMessageEmit($event)"
+    [contactData]="appData.sectionContact"
   ></app-address>
 
   <app-contact

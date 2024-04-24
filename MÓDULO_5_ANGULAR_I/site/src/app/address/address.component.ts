@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { SectionData } from '../models/section-features.model';
+import { SectionContact, SectionData } from '../models/section-features.model';
 
 @Component({
   selector: 'app-address',
@@ -8,6 +8,7 @@ import { SectionData } from '../models/section-features.model';
 })
 export class AddressComponent implements OnInit {
   @Input() addressData!: SectionData;
+  @Input() contactData!: SectionContact;
  
   @Output() saveAddressEmmiter: EventEmitter<string> = new EventEmitter();
 
