@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { filter, first } from 'rxjs';
+import { Pages } from 'src/app/constants/pages.enum';
 import { AddressDto } from 'src/app/models/address.dto';
-import { Address, User } from 'src/app/models/user.model';
+import { Address, User } from './../../models/user.model';
 
 @Component({
   selector: 'app-cadastrar-usuario',
@@ -11,17 +12,16 @@ import { Address, User } from 'src/app/models/user.model';
   styleUrls: ['./cadastrar-usuario.component.css'],
 })
 export class CadastrarUsuarioComponent implements OnInit {
+  @Input() userId?: string;
+  @Output() redirectEmitter = new EventEmitter<Pages>();
+
   userForm = new FormGroup({
-    _id: new FormControl(),
     name: new FormControl('', [
       Validators.required,
       Validators.minLength(2),
-      Validators.pattern(/^[a-zA-Z]+$/),
+      Validators.pattern(/^[a-zA-Z_]+$/),
     ]),
-    email: new FormControl('', [
-      Validators.required,
-      Validators.pattern(/^[^\s@]+@[^\s@]+\.[^\s@]+$/),
-    ]),
+    email: new FormControl('', [Validators.required, Validators.email]),
     profession: new FormControl('', [Validators.required]),
     documentNumber: new FormControl('', [
       Validators.required,
@@ -30,11 +30,10 @@ export class CadastrarUsuarioComponent implements OnInit {
     ]),
     birthDate: new FormControl('', [Validators.required]),
     monthlyIncome: new FormControl('', [Validators.required]),
-
     address: new FormGroup({
       zipCode: new FormControl('', [Validators.required]),
       street: new FormControl('', [Validators.required]),
-      number: new FormControl(0, [Validators.required]),
+      number: new FormControl('', [Validators.required]),
       complement: new FormControl(),
       district: new FormControl('', [Validators.required]),
       city: new FormControl('', [Validators.required]),
@@ -43,14 +42,33 @@ export class CadastrarUsuarioComponent implements OnInit {
     }),
   });
 
-  constructor(private http: HttpClient) {}
-
-  apiKey = '';
+  apiKey = 'db4399276d014d1992f94018cc6094ca';
   apiUrl = `https://crudcrud.com/api/${this.apiKey}/users`;
 
+  constructor(private http: HttpClient) {}
+
   ngOnInit(): void {
-    // this.userForm.patchValue(this.user)
+    // this.userForm.patchValue(this.user);
     this.setZipCodeSubscription();
+
+    if (this.userId) {
+      this.getUserById();
+    }
+  }
+
+  getUserById(): void {
+    const url = `${this.apiUrl}/${this.userId}`;
+    this.http
+      .get<User>(url)
+      .pipe(first())
+      .subscribe({
+        next: (response: User) => {
+          this.userForm.patchValue(response);
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      });
   }
 
   private setZipCodeSubscription(): void {
@@ -59,7 +77,6 @@ export class CadastrarUsuarioComponent implements OnInit {
       .subscribe((value) => {
         this.getAddressByZipCode(value as string);
       });
-    // também pode ser, this.userform.get('address')?.get('zipCode')
   }
 
   private getAddressByZipCode(zipCode: string): void {
@@ -67,56 +84,60 @@ export class CadastrarUsuarioComponent implements OnInit {
       .get<AddressDto>(`https://viacep.com.br/ws/${zipCode}/json/`)
       .pipe(first())
       .subscribe({
-        next: (response) => {
+        next: (response: AddressDto) => {
           const address: Partial<Address> = {
-            zipCode: response.cep,
+            // zipCode: response.cep,
             street: response.logradouro,
             complement: response.complemento,
-            city: response.localidade,
             district: response.bairro,
+            city: response.localidade,
             state: response.uf,
-            number: 0,
           };
-          this.userForm.controls.address.patchValue({ ...address });
+
+          this.userForm.controls.address.patchValue(address);
         },
         error: (err) => {
-          console.log(err);
+          console.error(err);
         },
       });
   }
 
-  // user: User = {
-  //   name: 'Lucas',
-  //   email: 'lucaspsantos003@gmail.com',
-  //   profession: 'Dev',
-  //   documentNumber: '01234567890',
-  //   birthDate: '2000-01-01',
-  //   monthlyIncome: 1000,
-  //   address: {
-  //     complement: 'Casa do fundo',
-  //     country: 'Brasil',
-  //     district: 'Bairro B',
-  //     number: 5,
-  //     state: 'BA',
-  //     street: 'Rua A',
-  //     zipCode: '42800049',
-  //     city: 'Salvador',
-  //   },
-  // };
-
   onSave(): void {
     const user = this.userForm.getRawValue();
+    // const user: User = this.userForm.getRawValue();
+    if (this.userId) {
+      return this.updateUser(user as User);
+    }
+
+    return this.saveUser(user as User);
+  }
+
+  saveUser(user: User): void {
     this.http
       .post<User>(this.apiUrl, user)
       .pipe(first())
       .subscribe({
-        next: (response) => {
-          console.log(response);
+        complete: () => {
+          this.redirectEmitter.emit(Pages.LIST);
         },
         error: (err) => {
-          console.log(err);
+          console.error(err);
         },
       });
-    console.log(user);
+  }
+
+  updateUser(user: User): void {
+    const url = `${this.apiUrl}/${this.userId}`;
+    this.http
+      .put<User>(url, user)
+      .pipe(first())
+      .subscribe({
+        complete: () => {
+          this.redirectEmitter.emit(Pages.LIST);
+        },
+        error: (err) => {
+          console.error(err);
+        },
+      });
   }
 }

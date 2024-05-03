@@ -5,14 +5,14 @@ export interface User {
   profession:string;
   documentNumber:string;
   birthDate: string;
-  monthlyIncome:number;
+  monthlyIncome:string;
   address:Address
 }
 
 export interface Address{
     zipCode:string
     street: string
-    number:number
+    number: string
     complement?:string
     district:string
     city:string
