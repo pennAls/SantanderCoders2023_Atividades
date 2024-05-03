@@ -1,15 +1,17 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { filter, first } from 'rxjs';
 import { Pages } from 'src/app/constants/pages.enum';
 import { AddressDto } from 'src/app/models/address.dto';
 import { Address, User } from './../../models/user.model';
 
 @Component({
-  selector: 'app-cadastrar-usuario',
-  templateUrl: './cadastrar-usuario.component.html',
-  styleUrls: ['./cadastrar-usuario.component.css'],
+    selector: 'app-cadastrar-usuario',
+    templateUrl: './cadastrar-usuario.component.html',
+    styleUrls: ['./cadastrar-usuario.component.css'],
+    standalone: true,
+    imports: [FormsModule, ReactiveFormsModule],
 })
 export class CadastrarUsuarioComponent implements OnInit {
   @Input() userId?: string;

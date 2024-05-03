@@ -2,11 +2,19 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { first } from 'rxjs';
 import { Address, User } from 'src/app/models/user.model';
+import { CadastrarUsuarioComponent } from '../cadastrar-usuario/cadastrar-usuario.component';
+import { NgFor, NgIf } from '@angular/common';
 
 @Component({
-  selector: 'app-listar-usuarios',
-  templateUrl: './listar-usuarios.component.html',
-  styleUrls: ['./listar-usuarios.component.css'],
+    selector: 'app-listar-usuarios',
+    templateUrl: './listar-usuarios.component.html',
+    styleUrls: ['./listar-usuarios.component.css'],
+    standalone: true,
+    imports: [
+        NgFor,
+        NgIf,
+        CadastrarUsuarioComponent,
+    ],
 })
 export class ListarUsuariosComponent implements OnInit {
   apiKey = 'db4399276d014d1992f94018cc6094ca';
