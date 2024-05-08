@@ -1,0 +1,21 @@
+.conteiner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 50px;
+  
+}
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 500px;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  width: 500px;
+  border-radius: 10px;
+  border-style: solid;
+  border-color: black;
+  background-image: url(https://plus.unsplash.com/premium_photo-1680365328443-9ba19c8025a1?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8ZnVuZG8lMjB2ZXJtZWxobyUyMCU3Q3xlbnwwfHwwfHx8MA%3D%3D);
+  background-size: contain;
+}

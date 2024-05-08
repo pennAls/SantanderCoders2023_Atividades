@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="row">
+      @for (product of products; track product.name) {
+      <div class="col-3">
+        <mat-card class="example-card">
+          <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>{{product.name}}</mat-card-title>
+          </mat-card-header>
+          <img
+            mat-card-image
+            src={{product.image}}
+            alt="Photo of a Shiba Inu"
+          />
+          <mat-card-content>
+            <p>{{product.description}}</p>
+            <p>{{product.price}}</p>
+            <p>{{product.qnt}}</p>
+          </mat-card-content>
+          <mat-card-actions style="gap: 5px" class="d-flex justify-content-end">
+            <button mat-stroked-button color="primary">Editar</button>
+            <button mat-stroked-button color="warn">Excluir</button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+      }@empty{
+      <div class="col-12 text-center">Nenhum Produto cadastrado</div>
+      }
+    </div>
+  </div>
+  

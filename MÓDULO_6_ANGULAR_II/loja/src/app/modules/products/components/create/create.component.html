@@ -1,0 +1,42 @@
+<section class="conteiner">
+  <form [formGroup]="productsForm" (ngSubmit)="onSave()">
+    <mat-form-field class="example-form-field">
+      <mat-label>Nome do Produto</mat-label>
+      <input matInput type="text" id="name" formControlName="name" />
+    </mat-form-field>
+
+    <mat-form-field class="example-form-field">
+      <mat-label>Descrição do Produto</mat-label>
+      <input
+        matInput
+        type="text"
+        id="description"
+        formControlName="description"
+      />
+    </mat-form-field>
+
+    <mat-form-field class="example-form-field">
+      <mat-label>Preço</mat-label>
+      <input matInput type="number" id="price" formControlName="price" />
+    </mat-form-field>
+
+    <mat-form-field class="example-form-field">
+      <mat-label>Quantidade</mat-label>
+      <input matInput type="number" id="qnt" formControlName="qnt" />
+    </mat-form-field>
+
+    <mat-form-field class="example-form-field">
+      <mat-label>Imagem</mat-label>
+      <input matInput type="text" id="image" formControlName="image" />
+    </mat-form-field>
+
+    <button
+      mat-raised-button
+      color="warn"
+      type="submit"
+      [disabled]="productsForm.invalid"
+    >
+      SUBMIT
+    </button>
+  </form>
+</section>
