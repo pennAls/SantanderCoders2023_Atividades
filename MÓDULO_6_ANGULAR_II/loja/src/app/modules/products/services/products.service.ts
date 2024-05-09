@@ -16,7 +16,16 @@ export class ProductsService {
     return this.http.get<Product[]>(this.apiUrl);
   }
 
-  createProducts(product: Product): Observable<Product> {
-    return this.http.post<Product>(this.apiUrl, product);
+  createProducts(product: Product): Observable<void> {
+    return this.http.post<void>(this.apiUrl, product);
+  }
+  deleteProduct(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
+  getProductById(id: string): Observable<Product> {
+    return this.http.get<Product>(`${this.apiUrl}/${id}`);
+  }
+  updateProduct(id: string, product: Product): Observable<void> {
+    return this.http.put<void>(`${this.apiUrl}/${id}`, product);
   }
 }

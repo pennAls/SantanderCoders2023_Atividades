@@ -1,11 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Product } from '../../models/product.model';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { Observable, first } from 'rxjs';
+import { Observable, Subject, first } from 'rxjs';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import { RouterModule } from '@angular/router';
+import { Route, Router, RouterModule } from '@angular/router';
 import { ProductsService } from '../../services/products.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmationModalComponent } from '../../../../commons/components/confirmation-modal/confirmation-modal.component';
 
 @Component({
   selector: 'app-list',
@@ -14,12 +16,17 @@ import { ProductsService } from '../../services/products.service';
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss',
 })
-export class ListComponent {
+export class ListComponent implements OnInit, OnDestroy {
+  protected ngUnsubscribe = new Subject();
   products?: Product[];
 
   observable = new Observable((observer) => {});
 
-  constructor(private productsService: ProductsService) {}
+  constructor(
+    private productsService: ProductsService,
+    public dialog: MatDialog,
+    private router: Router,
+  ) {}
 
   ngOnInit(): void {
     this.getProducts();
@@ -37,5 +44,46 @@ export class ListComponent {
           console.log(err);
         },
       });
+  }
+
+  onDelete(id: string): void {
+    this.productsService
+      .deleteProduct(id)
+      .pipe(first())
+      .subscribe({
+        complete: () => {
+          this.getProducts();
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      });
+  }
+
+  openDialog(id: string): void {
+    const dialog = this.dialog.open(ConfirmationModalComponent, {
+      width: '250px',
+      disableClose: true,
+      data: {
+        id,
+      },
+    });
+    dialog
+      .afterClosed()
+      .pipe(first())
+      .subscribe((res) => {
+        if (res) {
+          this.onDelete(id);
+        }
+      });
+  }
+
+  editProduct(id: string) {
+    this.router.navigate(['products', 'edit', id]);
+  }
+
+  ngOnDestroy(): void {
+    this.ngUnsubscribe.next(true);
+    this.ngUnsubscribe.complete();
   }
 }

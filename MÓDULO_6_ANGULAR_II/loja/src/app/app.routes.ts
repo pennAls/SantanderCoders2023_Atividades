@@ -20,8 +20,12 @@ export const routes: Routes = [
         component: CreateComponent,
       },
       {
-        path: 'list',
+        path: '',
         component: ListComponent,
+      },
+      {
+        path: 'edit/:id',
+        component: CreateComponent,
       },
     ],
   },
