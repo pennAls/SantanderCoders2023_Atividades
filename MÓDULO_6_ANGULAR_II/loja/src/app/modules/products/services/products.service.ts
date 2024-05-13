@@ -1,31 +1,46 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Product } from '../models/product.model';
-import { environment } from '../../../../environments/environment.development';
 import { Observable } from 'rxjs';
+import { environment } from '../../../../environments/environment.development';
+
+import { Product } from '../models/product.model';
+import { Constantes } from '../../../commons/constants/constants.enum';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductsService {
-  constructor(private http: HttpClient) {}
-
   apiUrl = `${environment.apiUrl}/products`;
 
+  constructor(private http: HttpClient) {}
+
   getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(this.apiUrl);
+    return this.http.get<Product[]>(this.apiUrl, this.setHeaders());
+  }
+
+  getProductById(id: string): Observable<Product> {
+    return this.http.get<Product>(`${this.apiUrl}/${id}`, this.setHeaders());
   }
 
   createProducts(product: Product): Observable<void> {
-    return this.http.post<void>(this.apiUrl, product);
+    return this.http.post<void>(this.apiUrl, product, this.setHeaders());
   }
-  deleteProduct(id: string): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`);
-  }
-  getProductById(id: string): Observable<Product> {
-    return this.http.get<Product>(`${this.apiUrl}/${id}`);
-  }
+
   updateProduct(id: string, product: Product): Observable<void> {
-    return this.http.put<void>(`${this.apiUrl}/${id}`, product);
+    return this.http.put<void>(
+      `${this.apiUrl}/${id}`,
+      product,
+      this.setHeaders()
+    );
+  }
+
+  deleteProduct(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`, this.setHeaders());
+  }
+
+  private setHeaders() {
+    const token = localStorage.getItem(Constantes.TOKEN_KEY) ?? '';
+    const headers = new HttpHeaders().set('Authorization', token);
+    return { headers };
   }
 }
