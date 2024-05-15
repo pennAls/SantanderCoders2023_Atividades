@@ -15,32 +15,25 @@ export class ProductsService {
   constructor(private http: HttpClient) {}
 
   getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(this.apiUrl, this.setHeaders());
+    return this.http.get<Product[]>(this.apiUrl);
   }
 
   getProductById(id: string): Observable<Product> {
-    return this.http.get<Product>(`${this.apiUrl}/${id}`, this.setHeaders());
+    return this.http.get<Product>(`${this.apiUrl}/${id}`);
   }
 
   createProducts(product: Product): Observable<void> {
-    return this.http.post<void>(this.apiUrl, product, this.setHeaders());
+    return this.http.post<void>(this.apiUrl, product);
   }
 
   updateProduct(id: string, product: Product): Observable<void> {
     return this.http.put<void>(
       `${this.apiUrl}/${id}`,
       product,
-      this.setHeaders()
     );
   }
 
   deleteProduct(id: string): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`, this.setHeaders());
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
-
-  private setHeaders() {
-    const token = localStorage.getItem(Constantes.TOKEN_KEY) ?? '';
-    const headers = new HttpHeaders().set('Authorization', token);
-    return { headers };
-  }
-}
+} 

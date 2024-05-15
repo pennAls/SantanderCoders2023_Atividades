@@ -4,10 +4,12 @@
   align-items: center;
   padding-top: 30px;
   padding-bottom: 30px;
+  background-color: black;
   
 }
 form {
   display: flex;
+  padding-top: 20px;
   justify-content: center;
   align-items: center;
   height: 600px;
@@ -17,8 +19,9 @@ form {
   border-radius: 10px;
   border-style: solid;
   border-color: black;
-  background-image: url(https://t4.ftcdn.net/jpg/00/81/35/31/360_F_81353111_RHDo5ABCfUCnQpiSqJmAI6bzrIiF11rI.jpg);
+ background-image: url(https://cdn.photoroom.com/v1/assets-cached.jpg?path=backgrounds_v3/black/Photoroom_black_background_extremely_fine_texture_only_black_co_c3ee01bd-a082-44ff-b184-e338a13b2ffa.jpg);
   background-size: cover;
+  background-repeat: no-repeat;
 }
 
 mat-form-field{

@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
       .subscribe({
         next: (res) => {
           localStorage.setItem(Constantes.TOKEN_KEY, `Bearer ${res.token}`);
-          this.router.navigate(['products']);
+          this.router.navigate(['']);
         },
         error: (err) => {
           console.log(err);
